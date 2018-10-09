@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ant.p2p.mapper.loan.BidInfoMapper">
+  <resultMap id="BaseResultMap" type="com.ant.p2p.model.loan.BidInfo">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="loanId" jdbcType="INTEGER" property="loanid" />
+    <result column="uid" jdbcType="INTEGER" property="uid" />
+    <result column="bidMoney" jdbcType="DOUBLE" property="bidmoney" />
+    <result column="bidTime" jdbcType="TIMESTAMP" property="bidtime" />
+    <result column="bidStatus" jdbcType="INTEGER" property="bidstatus" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, loanId, uid, bidMoney, bidTime, bidStatus
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from b_bid_info
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from b_bid_info
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.ant.p2p.model.loan.BidInfo">
+    insert into b_bid_info (id, loanId, uid, 
+      bidMoney, bidTime, bidStatus
+      )
+    values (#{id,jdbcType=INTEGER}, #{loanid,jdbcType=INTEGER}, #{uid,jdbcType=INTEGER}, 
+      #{bidmoney,jdbcType=DOUBLE}, #{bidtime,jdbcType=TIMESTAMP}, #{bidstatus,jdbcType=INTEGER}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.ant.p2p.model.loan.BidInfo">
+    insert into b_bid_info
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="loanid != null">
+        loanId,
+      </if>
+      <if test="uid != null">
+        uid,
+      </if>
+      <if test="bidmoney != null">
+        bidMoney,
+      </if>
+      <if test="bidtime != null">
+        bidTime,
+      </if>
+      <if test="bidstatus != null">
+        bidStatus,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="loanid != null">
+        #{loanid,jdbcType=INTEGER},
+      </if>
+      <if test="uid != null">
+        #{uid,jdbcType=INTEGER},
+      </if>
+      <if test="bidmoney != null">
+        #{bidmoney,jdbcType=DOUBLE},
+      </if>
+      <if test="bidtime != null">
+        #{bidtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="bidstatus != null">
+        #{bidstatus,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.ant.p2p.model.loan.BidInfo">
+    update b_bid_info
+    <set>
+      <if test="loanid != null">
+        loanId = #{loanid,jdbcType=INTEGER},
+      </if>
+      <if test="uid != null">
+        uid = #{uid,jdbcType=INTEGER},
+      </if>
+      <if test="bidmoney != null">
+        bidMoney = #{bidmoney,jdbcType=DOUBLE},
+      </if>
+      <if test="bidtime != null">
+        bidTime = #{bidtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="bidstatus != null">
+        bidStatus = #{bidstatus,jdbcType=INTEGER},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.ant.p2p.model.loan.BidInfo">
+    update b_bid_info
+    set loanId = #{loanid,jdbcType=INTEGER},
+      uid = #{uid,jdbcType=INTEGER},
+      bidMoney = #{bidmoney,jdbcType=DOUBLE},
+      bidTime = #{bidtime,jdbcType=TIMESTAMP},
+      bidStatus = #{bidstatus,jdbcType=INTEGER}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>
